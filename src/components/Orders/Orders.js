@@ -16,11 +16,11 @@ class Orders extends React.Component {
   render() {
     const orderEls = this.props.orders.map(order => {
       return (
-        <div className="order">
+        <div className="order" key={order.id}>
           <h3>{order.name}</h3>
           <ul className="ingredient-list">
-            {order.ingredients.map(ingredient => {
-              return <li>{ingredient}</li>
+            {order.ingredients.map((ingredient, i) => {
+              return <li key={i}>{ingredient}</li>
             })}
           </ul>
         </div>
