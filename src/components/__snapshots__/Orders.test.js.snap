@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Orders should match the snapshot 1`] = `
+<section>
+  <div
+    className="order"
+    key="1"
+  >
+    <h3>
+      Carlos
+    </h3>
+    <ul
+      className="ingredient-list"
+    >
+      <li
+        key="0"
+      >
+        lettuce
+      </li>
+      <li
+        key="1"
+      >
+        queso
+      </li>
+      <li
+        key="2"
+      >
+        steak
+      </li>
+    </ul>
+  </div>
+  <div
+    className="order"
+    key="2"
+  >
+    <h3>
+      Regina
+    </h3>
+    <ul
+      className="ingredient-list"
+    >
+      <li
+        key="0"
+      >
+        beans
+      </li>
+      <li
+        key="1"
+      >
+        queso
+      </li>
+      <li
+        key="2"
+      >
+        cilantro
+      </li>
+    </ul>
+  </div>
+  <div
+    className="order"
+    key="3"
+  >
+    <h3>
+      Sofia
+    </h3>
+    <ul
+      className="ingredient-list"
+    >
+      <li
+        key="0"
+      >
+        rice
+      </li>
+      <li
+        key="1"
+      >
+        sour cream
+      </li>
+      <li
+        key="2"
+      >
+        carnitas
+      </li>
+    </ul>
+  </div>
+</section>
+`;

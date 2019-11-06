@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setOrders, addOrder } from '../../actions';
+import { postOrder } from '../../apiCalls'
 
-class OrderForm extends Component {
+export class OrderForm extends Component {
   constructor(props) {
     super();
     this.props = props;
     this.state = {
       name: '',
-      ingredients: []
+      ingredients: [],
+      error: ''
     };
   }
 
@@ -20,7 +25,14 @@ class OrderForm extends Component {
   }
 
   handleSubmit = e => {
+    const {addOrder} = this.props;
     e.preventDefault();
+    if (this.state.name && this.state.ingredients.length) {
+      postOrder(this.state.name, this.state.ingredients);
+      addOrder(this.state.name, this.state.ingredients)
+    } else {
+      return 'Add some ingredients!'
+    }
     this.clearInputs();
   }
 
@@ -32,7 +44,7 @@ class OrderForm extends Component {
     const possibleIngredients = ['beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 'queso fresco', 'pico de gallo', 'hot sauce', 'guacamole', 'jalapenos', 'cilantro', 'sour cream'];
     const ingredientButtons = possibleIngredients.map(ingredient => {
       return (
-        <button key={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
+        <button className="ingredient" key={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
           {ingredient}
         </button>
       )
@@ -52,7 +64,7 @@ class OrderForm extends Component {
 
         <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
 
-        <button onClick={e => this.handleSubmit(e)}>
+        <button className="submit" onClick={e => this.handleSubmit(e)}>
           Submit Order
         </button>
       </form>
@@ -60,4 +72,10 @@ class OrderForm extends Component {
   }
 }
 
-export default OrderForm;
+export const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    addOrder
+  }, dispatch)
+);
+
+export default connect(null, mapDispatchToProps)(OrderForm);
