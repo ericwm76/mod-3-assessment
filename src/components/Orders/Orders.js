@@ -6,15 +6,15 @@ import { setOrders } from '../../actions';
 import { getOrders } from '../../apiCalls';
 
 class Orders extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {
 
-    }
+  componentDidMount() {
+    getOrders()
+      .then(data => this.props.setOrders(data.orders))
+      .catch(err => console.error('Error fetching:', err));
   }
 
-  displayOrders = () => {
-    const orderEls = props.orders.map(order => {
+  render() {
+    const orderEls = this.props.orders.map(order => {
       return (
         <div className="order">
           <h3>{order.name}</h3>
@@ -27,13 +27,12 @@ class Orders extends React.Component {
       )
     });
   
-  return (
-    <section>
-      { orderEls.length ? orderEls : <p>No orders yet!</p> }
-    </section>
-  )
-}
-}
+    return (
+      <section>
+        { orderEls.length ? orderEls : <p>No orders yet!</p> }
+      </section>
+    )
+  }
 }
 
 export const mapStateToProps = ({ orders }) => ({
