@@ -1,6 +1,6 @@
-export const getOrders = () => {
-  return fetch('http://localhost:3001/api/v1/orders')
-      .then(response => response.json())
+export const getOrders = async () => {
+  let response = await fetch('http://localhost:3001/api/v1/orders');
+  return response.json();
 }
 
 export const postOrder = async (name, ingredients) => {

@@ -5,12 +5,15 @@ import { bindActionCreators } from 'redux';
 import { setOrders } from '../../actions';
 import { getOrders } from '../../apiCalls';
 
-class Orders extends React.Component {
+export class Orders extends React.Component {
 
-  componentDidMount() {
-    getOrders()
-      .then(data => this.props.setOrders(data.orders))
-      .catch(err => console.error('Error fetching:', err));
+  componentDidMount = async () => {
+    try {
+      let data = await getOrders()
+      this.props.setOrders(data.orders)
+    } catch(err) {
+      console.error('Error fetching:', err);
+    } 
   }
 
   render() {
